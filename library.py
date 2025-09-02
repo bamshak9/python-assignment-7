@@ -20,20 +20,32 @@ library = []
 def add_book(**book):
     library.append(book)
     book_title= book["title"]
+    print(f"Book {book_title} added successfully")
     return f"Book {book_title} added successfully"
     """Add a new book into the library with flexible details.
         return "Book {book_title} added successfully!"
     """
+    
+add_book(id=1, title= "Genk", author= "jeremiah", available= True)
+add_book(id= 2, title="kishi", author= "john", available= True)
+#print(add_book(id=1, title= "Genk", author= "Jeremiah", available= True))
+#print(add_book(id= 2, title="kishi", author= "John", available= True))
+#print(library)
 
 def search_books(search_param):
     """Search for books by multiple keywords (title, author).
     return books that match search description.
     """
+    for book in library:
+        if search_param.lower() in book.values():
+            print(book)
+        else:
+            continue
+
 
 def borrow_book(book_id):
     """Borrow a book if available (msg: You borrowed {book_title}).
         else-> msg: Book {book_title} not available
     """
-print(add_book(id=1, title= "Genk", author= "Jeremiah", available= True))
-print(add_book(id= 2, title="kishi", author= "John", available= True))
 print(library)
+search_books("kishi")
