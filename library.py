@@ -26,7 +26,7 @@ def add_book(**book):
         return "Book {book_title} added successfully!"
     """
     
-add_book(id=1, title= "Genk", author= "jeremiah", available= True)
+add_book(id=1, title= "genk", author= "jeremiah", available= True)
 add_book(id= 2, title="kishi", author= "john", available= True)
 #print(add_book(id=1, title= "Genk", author= "Jeremiah", available= True))
 #print(add_book(id= 2, title="kishi", author= "John", available= True))
@@ -47,5 +47,12 @@ def borrow_book(book_id):
     """Borrow a book if available (msg: You borrowed {book_title}).
         else-> msg: Book {book_title} not available
     """
+    for book in library:
+        book_title= book["title"]
+        if book_id.lower() in book.values():
+            return f"You borrowed {book_title}"
+        else:
+            return f"{book_title} not available"
 print(library)
 search_books("kishi")
+print(borrow_book("genk"))
