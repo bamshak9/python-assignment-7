@@ -22,17 +22,44 @@ voters = set()
 def register_candidates(*args, **kwargs):
     """Register candidates with optional metadata.
     """
-    pass
+    for candidate in args:
+        candidates[candidate] = 0
+    print(candidates)
+register_candidates("Tinubu", "Obi", "Atiku", party = "APC")
+    
 
 def cast_vote(voter_id, candidate):
     """Cast vote if voter has not voted before.
         after all the vote logic is completeted sucessfully,
         return: Vote casted for {candidate}.
     """
-    pass
+    if voter_id in voters:
+        print(f"Voter with ID{voter_id} has already voted")
+        return
+    else:
+        for candids in candidates:
+            if candids == candidate:
+                candidates[candidate] += 1
+                print(candidates)
+        else:
+            return"Candidate does not exist!"
+    print(voters)
+    print(candidates)
+cast_vote(1, "Obi")
+cast_vote(2, "Obi")
+cast_vote(3, "Obama")
 
 def election_result():
     """Return the winner(s)."""
     # max_votes = #add logic
     # winners = #add logic
     # return {"winners": winners, "candidates": candidates}
+    max_votes=0
+    for candidate in candidates:
+        if candidates[candidate] > max_votes:
+            max_votes = candidates[candidate]
+    for candidate in candidates:
+        if candidates[candidate] == max_votes:
+            winner = candidate
+    return {"winners": winner, "candidates": candidates}
+print(election_result())
